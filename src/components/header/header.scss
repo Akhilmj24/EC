@@ -1,0 +1,18 @@
+.headerConatiner {
+  text-align: center;
+  position: relative;
+  h1 {
+    position: relative;
+    z-index: 2;
+  }
+  .boxHeader {
+    height: 40px;
+    width: 160px;
+    position: absolute;
+    bottom: 0%;
+    // left: 31%;
+    z-index: 1;
+    background: #C9ECFF;
+    
+  }
+}
