@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { getUsers } from "../../redux/features/userSilce/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Banner from "../../components/banner/Banner";
 import ProductgirdDisplay from "../../components/card/ProductgirdDisplay";
@@ -10,11 +9,11 @@ import { productItems } from "../../utils/data/Data";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-  useEffect(() => {
-    dispatch(getUsers());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getUsers());
+  // }, []);
  
   return (
     <div>

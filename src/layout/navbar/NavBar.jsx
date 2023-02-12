@@ -7,9 +7,10 @@ import useHeaderColor from "../../utils/hooks/useHeaderColor";
 import { styles } from "../../utils/style/style";
 
 export default function NavBar() {
+  const userinfo = JSON.parse(sessionStorage.getItem("user"));
   const [ismenuOpen, setismenuOpen] = useState(false);
   const [menusLink, setmenusLink] = useState([]);
-  const [isuser, setisuser] = useState(true);
+  const [isuser, setisuser] = useState(userinfo ? true : false);
   const headerColor = useHeaderColor();
   const products = useSelector((state) => state.cart.products);
   useEffect(() => {
@@ -19,7 +20,13 @@ export default function NavBar() {
       setmenusLink(menusLinkuser0);
     }
   }, [isuser]);
-
+  const menutypeHandler = (menu) => {
+    console.log("menu", menu);
+    if (menu === "Logout") {
+      sessionStorage.clear();
+      setisuser(false);
+    }
+  };
   return (
     <div className="fixed top-0 left-0 z-[500] w-full ">
       <header
@@ -35,15 +42,17 @@ export default function NavBar() {
               <li
                 className="cursor-pointer text-xl md:text-2xl text-gryShade"
                 key={index}
+                onClick={() => menutypeHandler(menuName)}
               >
                 <Link to={path}>
-                  <span title={menuName} className="flex relative z-30">
+                  <span title={menuName} className="flex relative z-30 items-center">
                     <ion-icon name={icon} title={false}></ion-icon>
                     {menuName === "Cart" ? (
                       products.length > 0 ? (
                         <div className="absolute top-0 -right-1 z-40 w-[15px] h-[15px]  rounded-[50%] text-xs text-center text-black font-semibold bg-blueShade"></div>
                       ) : null
                     ) : null}
+                    {menuName === "Login" ? <p className="text-base ml-2">Login</p> : null}
                   </span>
                 </Link>
               </li>
@@ -52,7 +61,7 @@ export default function NavBar() {
         </div>
       </header>
       <nav
-        className={`${styles.transitionNav} w-full h-14  relative flex md:justify-center items-center `}
+        className={`${styles.transitionNav} w-full h-14  relative flex md:justify-center items-center`}
         style={{ background: headerColor }}
       >
         <div
