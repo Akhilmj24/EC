@@ -1,24 +1,34 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { styles } from "../../utils/style/style";
 
-export default function ProfileDetails() {
+export default function ProfileDetails({ setisEditable }) {
+  const user = useSelector((state) => state.user);
+  
   return (
     <div>
-      <h1 className="text-2xl mb-5 underline">Profile Details</h1>
+      <div className="flex gap-3 items-end mb-5">
+        <h1 className="text-2xl underline">Profile Details</h1>
+        <p
+          className={`${styles.transitionHover} text-lg cursor-pointer hover:text-xl`}
+          onClick={() => setisEditable(true)}
+        >
+          Edit
+        </p>
+      </div>
       <dl>
         <dt>Full Name:</dt>
-        <dd>Akhil</dd>
+        <dd>{user?.user?.name}</dd>
         <dt>Email ID :</dt>
-        <dd> inboxakhil321@gmail.com</dd>
+        <dd> {user?.user?.email}</dd>
         <dt>Mobile Number:</dt>
-        <dd> 7736570852</dd>
+        <dd> {user?.user?.mobile}</dd>
         <dt>Gender:</dt>
-        <dd> MALE</dd>
+        <dd> {user?.user?.gender}</dd>
         <dt>Date of Birth :</dt>
-        <dd> - not added -</dd>
-        <dt>Location:</dt>
-        <dd> - not added -</dd>
-        <dt>Alternate Mobile:</dt>
-        <dd> - not added -</dd>
+        <dd> {user?.user?.dob}</dd>
+        <dt>Address:</dt>
+        <dd> {user?.user?.address}</dd>
       </dl>
     </div>
   );

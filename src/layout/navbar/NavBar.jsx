@@ -13,6 +13,7 @@ export default function NavBar() {
   const [isuser, setisuser] = useState(userinfo ? true : false);
   const headerColor = useHeaderColor();
   const products = useSelector((state) => state.cart.products);
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     if (isuser) {
       setmenusLink(menusLinkuser1);
@@ -21,7 +22,6 @@ export default function NavBar() {
     }
   }, [isuser]);
   const menutypeHandler = (menu) => {
-    console.log("menu", menu);
     if (menu === "Logout") {
       sessionStorage.clear();
       setisuser(false);
@@ -37,7 +37,7 @@ export default function NavBar() {
           <Link to="/">Logo</Link>
         </div>
         <div className="text-2xl">
-          <ul className="flex gap-4">
+          <ul className="flex gap-4 items-center">
             {menusLink.map(({ icon, path, menuName, index }) => (
               <li
                 className="cursor-pointer text-xl md:text-2xl text-gryShade"
@@ -45,18 +45,27 @@ export default function NavBar() {
                 onClick={() => menutypeHandler(menuName)}
               >
                 <Link to={path}>
-                  <span title={menuName} className="flex relative z-30 items-center">
+                  <span
+                    title={menuName}
+                    className="flex relative z-30 items-center"
+                  >
                     <ion-icon name={icon} title={false}></ion-icon>
+
                     {menuName === "Cart" ? (
                       products.length > 0 ? (
                         <div className="absolute top-0 -right-1 z-40 w-[15px] h-[15px]  rounded-[50%] text-xs text-center text-black font-semibold bg-blueShade"></div>
                       ) : null
                     ) : null}
-                    {menuName === "Login" ? <p className="text-base ml-2">Login</p> : null}
+                    {menuName === "Login" ? (
+                      <p className="text-base ml-2">Login</p>
+                    ) : null}
                   </span>
                 </Link>
               </li>
             ))}
+            <small className="font-medium text-base text-black ">
+              Hi, {user?.user?.name}
+            </small>
           </ul>
         </div>
       </header>

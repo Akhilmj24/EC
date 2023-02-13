@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { error } from "../../utils/service/error";
 import { styles } from "../../utils/style/style";
 import { handlelogin } from "./auth";
 import { useNavigate } from "react-router-dom";
 import { isvalid } from "../../utils/service/validationCheck";
+import { useDispatch, useSelector } from "react-redux";
+import { getuser } from "../../redux/features/userSilce/userSlice";
 
 export default function Login() {
   const [email, setEmail] = useState("akhil@ecommerce.com");
   const [password, setPassword] = useState("123456");
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (email.trim() === "") {
@@ -29,6 +32,7 @@ export default function Login() {
         if (res.status) {
           sessionStorage.setItem("user", JSON.stringify(res));
           navigate("/");
+          dispatch(getuser());
         } else {
           error(res.message);
         }

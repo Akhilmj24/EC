@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { apiAuth, baseUrl } from "../../../utils/service/api";
-import { postApi } from "../../../utils/service/axiosCall";
+import { getApi, postApi } from "../../../utils/service/axiosCall";
 
 const initialState = {
   loading: false,
@@ -9,8 +9,8 @@ const initialState = {
   error: "",
 };
 
-export const postLogin = createAsyncThunk("user/login", async (data) => {
-  return postApi(data, apiAuth.login);
+export const getuser = createAsyncThunk("user/login", async () => {
+  return getApi(apiAuth.getuser);
 });
 export const postRegistration = createAsyncThunk(
   "user/registration",
@@ -24,20 +24,15 @@ const userSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     // For Login
-    builder.addCase(postLogin.pending, (state) => {
+    builder.addCase(getuser.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(postLogin.fulfilled, (state, action) => {
+    builder.addCase(getuser.fulfilled, (state, action) => {
       state.loading = false;
-      //   state.user = action.payload;
+      state.user = action.payload;
       state.error = "";
-      if (action.payload.status) {
-        localStorage.setItem("user", JSON.stringify(action.payload));
-      }else{
-        
-      }
     });
-    builder.addCase(postLogin.rejected, (state, action) => {
+    builder.addCase(getuser.rejected, (state, action) => {
       state.loading = false;
       state.user = [];
       state.error = action.error.message;

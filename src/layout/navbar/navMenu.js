@@ -61,7 +61,7 @@ export const menusLinkuser1 = [
   {
     menuName: "Profile",
     icon: "person",
-    path: "/profile",
+    path: "/profile/profiledetails",
   },
   {
     menuName: "Logout",

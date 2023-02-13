@@ -36,7 +36,7 @@ export default function DisplayVerticalProduct(props) {
         <img
           src={props.image}
           alt="cartImage"
-          className="w-[100%] h-[100%] object-cover object-center"
+          className="w-[100%] h-[100%] object-contain"
         />
       </div>
       <div className="flex flex-col gap-3">

@@ -5,6 +5,7 @@ import Home from "../../pages/home/Home";
 import ProductList from "../../pages/product/ProductList";
 import ProductView from "../../pages/product/ProductView";
 import Profile from "../../pages/profile/Profile";
+import ProfileEdit from "../../pages/profile/ProfileEdit";
 
 export const routes = [
   {
@@ -24,7 +25,7 @@ export const routes = [
       },
       {
         name: "profile",
-        path: "/profile",
+        path: "/profile/:id",
         element: <Profile />,
         isPrivate: true,
       },
@@ -44,6 +45,12 @@ export const routes = [
         name: "productview",
         path: "/cart",
         element: <Cart />,
+        isPrivate: true,
+      },
+      {
+        name: "profiledeatils",
+        path: "/profiledeatils",
+        element: <ProfileEdit />,
         isPrivate: true,
       },
     ],
