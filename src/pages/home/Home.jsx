@@ -7,15 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { productItems } from "../../utils/data/Data";
 import PhotosUploader from "../../components/uploader/PhotosUploader";
 
+import { useSelector } from "react-redux";
+
 export default function Home() {
   const navigate = useNavigate();
 
   const [addedPhotos, setAddedPhotos] = useState([]);
-  
+ 
   return (
     <div>
       <Banner />
-      <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
+      {/* <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} /> */}
       <Header text={"New Arrvials"} isMainHeading={true} />
       <DisplaySectionProduct limit={4} orderType={"newAdded"} />
       <ProductgirdDisplay />

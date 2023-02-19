@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import DisplayVerticalProduct from "../../components/displayProduct/DisplayVerticalProduct";
@@ -8,6 +8,7 @@ import Subtotal from "./Subtotal";
 
 export default function Cart() {
   const products = useSelector((state) => state.cart.products);
+  const [first, setfirst] = useState()
 
   return (
     <div className={`${styles.innerpagepaddings}`}>

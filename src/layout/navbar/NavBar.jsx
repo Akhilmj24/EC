@@ -13,7 +13,7 @@ export default function NavBar() {
   const [isuser, setisuser] = useState(userinfo ? true : false);
   const headerColor = useHeaderColor();
   const products = useSelector((state) => state.cart.products);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
   useEffect(() => {
     if (isuser) {
       setmenusLink(menusLinkuser1);
@@ -25,6 +25,7 @@ export default function NavBar() {
     if (menu === "Logout") {
       sessionStorage.clear();
       setisuser(false);
+      window.location.reload(false);
     }
   };
   return (
@@ -44,7 +45,7 @@ export default function NavBar() {
                 key={index}
                 onClick={() => menutypeHandler(menuName)}
               >
-                <Link to={path}>
+                <Link to={path} key={index}>
                   <span
                     title={menuName}
                     className="flex relative z-30 items-center"
@@ -63,9 +64,11 @@ export default function NavBar() {
                 </Link>
               </li>
             ))}
-            <small className="font-medium text-base text-black ">
-              Hi, {user?.user?.name}
-            </small>
+            {userinfo ? (
+              <small className="font-medium text-base text-black ">
+                Hi, {user?.name}
+              </small>
+            ):null}
           </ul>
         </div>
       </header>
@@ -92,7 +95,9 @@ export default function NavBar() {
               key={index}
               className={`${styles.transitionHover}  my-3 md:my-0 md:text-base font-semibold tracking-wider hover:text-[18px]`}
             >
-              <Link to={path}>{menuName}</Link>
+              <Link to={path} key={index}>
+                {menuName}
+              </Link>
             </li>
           ))}
         </ul>

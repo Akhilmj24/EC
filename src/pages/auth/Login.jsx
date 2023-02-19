@@ -12,7 +12,7 @@ export default function Login() {
   const [email, setEmail] = useState("akhil@ecommerce.com");
   const [password, setPassword] = useState("123456");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ export default function Login() {
         if (res.status) {
           sessionStorage.setItem("user", JSON.stringify(res));
           navigate("/");
-          dispatch(getuser());
+          window.location.reload(false);
         } else {
           error(res.message);
         }

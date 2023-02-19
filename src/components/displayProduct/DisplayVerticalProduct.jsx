@@ -2,14 +2,23 @@ import { Rating } from "primereact/rating";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
+  orderSizeAdd,
   quantityDecrement,
   quantityIncrement,
   removeItem,
 } from "../../redux/features/cartSilce/cartSlice";
+import { baseUrlImage } from "../../utils/service/api";
+import { formatCurrency } from "../../utils/service/formatCurrency";
+
 export default function DisplayVerticalProduct(props) {
   const [rating, setRating] = useState(null);
-
   const dispatch = useDispatch();
+  const [isSize, setisSize] = useState("");
+
+  const orderSizeHandler = (id, size) => {
+    setisSize(size);
+    dispatch(orderSizeAdd([props._id,size]));
+  };
   return (
     <div className="flex gap-5 relative">
       <div
@@ -34,13 +43,13 @@ export default function DisplayVerticalProduct(props) {
       </div>
       <div className="w-[200px] h-[200px]">
         <img
-          src={props.image}
+          src={`${baseUrlImage}${props.images[0]}`}
           alt="cartImage"
           className="w-[100%] h-[100%] object-contain"
         />
       </div>
       <div className="flex flex-col gap-3">
-        <h3 className="text-2xl">{props.name}</h3>
+        <h3 className="text-2xl">{props.title}</h3>
         <div className="md:flex-row flex flex-col gap-3 ">
           <Rating
             value={rating}
@@ -49,8 +58,49 @@ export default function DisplayVerticalProduct(props) {
           />
           <p>385 Reviews</p>
         </div>
-        <h3 className="text-xl">Rs {props.saleprice}.00</h3>
-        <h2>Size: S</h2>
+        <h3 className="text-xl">{formatCurrency(props.saleprice)}</h3>
+        <div className="flex gap-3 my-3">
+          <p
+            onClick={() => orderSizeHandler(props._id, "S")}
+            className={`${
+              isSize === `S`
+                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
+                : `cursor-pointer`
+            }`}
+          >
+            S
+          </p>
+          <p
+            onClick={() => orderSizeHandler(props._id, "M")}
+            className={`${
+              isSize === `M`
+                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
+                : `cursor-pointer`
+            }`}
+          >
+            M
+          </p>
+          <p
+            onClick={() => orderSizeHandler(props._id, "L")}
+            className={`${
+              isSize === `L`
+                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
+                : `cursor-pointer`
+            }`}
+          >
+            L
+          </p>
+          <p
+            onClick={() => orderSizeHandler(props._id, "XL")}
+            className={`${
+              isSize === `XL`
+                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
+                : `cursor-pointer`
+            }`}
+          >
+            XL
+          </p>
+        </div>
         <div className="flex gap-4 items-center">
           <button onClick={() => dispatch(quantityDecrement(props._id))}>
             -
