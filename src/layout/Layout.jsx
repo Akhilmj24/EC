@@ -9,28 +9,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { getuser } from "../redux/features/userSilce/userSlice";
 import { putApi } from "../utils/service/axiosCall";
 import { apiAuth } from "../utils/service/api";
+import { addtoCart } from "../redux/features/cartSilce/cartSlice";
 
 export default function Layout() {
   const userinfo = JSON.parse(sessionStorage.getItem("user"));
-  const user = useSelector((state) => state.user);
+  const userCart = useSelector((state) => state.user.user?.cart);
+  const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   useEffect(() => {
     if (userinfo?.details?._id) {
       dispatch(getuser());
     }
   }, []);
+  // console.log("useerCart", userCart);
 
-  const products = useSelector((state) => state.cart.products);
   useEffect(() => {
     if (products.length > 0) {
-      console.log(products);
-
       const data = {
         cart: products,
       };
-      putApi(data, apiAuth.updatecart).then((res) => console.log("first"));
+      putApi(data, apiAuth.updatecart);
+      console.log("cart updated");
     }
   }, [products]);
+  console.log("asdsadsad", products);
+  useEffect(() => {
+    if (!products.length > 0) {
+      if (userCart) {
+        console.log("yes");
+        userCart.map((product) => {
+          dispatch(addtoCart(product));
+        });
+      }
+    }
+  }, [userCart]);
 
   return (
     <>

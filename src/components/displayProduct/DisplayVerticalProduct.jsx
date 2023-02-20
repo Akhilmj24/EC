@@ -7,20 +7,20 @@ import {
   quantityIncrement,
   removeItem,
 } from "../../redux/features/cartSilce/cartSlice";
+import { productSize } from "../../utils/data/Data";
 import { baseUrlImage } from "../../utils/service/api";
 import { formatCurrency } from "../../utils/service/formatCurrency";
 
 export default function DisplayVerticalProduct(props) {
   const [rating, setRating] = useState(null);
   const dispatch = useDispatch();
-  const [isSize, setisSize] = useState("");
 
   const orderSizeHandler = (id, size) => {
-    setisSize(size);
-    dispatch(orderSizeAdd([props._id,size]));
+    props.setisSize(size);
+    dispatch(orderSizeAdd([props._id, size]));
   };
   return (
-    <div className="flex gap-5 relative">
+    <div className="flex gap-5 relative" key={props._id}>
       <div
         className={`md:top-2 md:right-1 absolute cursor-pointer${
           props.isRemove ? `top-1 right-0 ` : `-bottom-14 right-0 `
@@ -60,46 +60,47 @@ export default function DisplayVerticalProduct(props) {
         </div>
         <h3 className="text-xl">{formatCurrency(props.saleprice)}</h3>
         <div className="flex gap-3 my-3">
-          <p
-            onClick={() => orderSizeHandler(props._id, "S")}
-            className={`${
-              isSize === `S`
-                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
-                : `cursor-pointer`
-            }`}
-          >
-            S
-          </p>
-          <p
-            onClick={() => orderSizeHandler(props._id, "M")}
-            className={`${
-              isSize === `M`
-                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
-                : `cursor-pointer`
-            }`}
-          >
-            M
-          </p>
-          <p
-            onClick={() => orderSizeHandler(props._id, "L")}
-            className={`${
-              isSize === `L`
-                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
-                : `cursor-pointer`
-            }`}
-          >
-            L
-          </p>
-          <p
-            onClick={() => orderSizeHandler(props._id, "XL")}
-            className={`${
-              isSize === `XL`
-                ? `w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer`
-                : `cursor-pointer`
-            }`}
-          >
-            XL
-          </p>
+          {props.ordersize ? (
+            <p className="w-[25px] h-[25px] text-center bg-blueShade font-semibold rounded-[50%] cursor-pointer">
+              {props.ordersize}
+            </p>
+          ) : (
+            <>
+              {productSize.map(({ value, label, index }) => (
+                <p
+                  key={index}
+                  onClick={() => orderSizeHandler(props._id, value)}
+                  className={`w-[25px] h-[25px] text-centerrounded-[50%] cursor-pointer`}
+                >
+                  {value}
+                </p>
+              ))}
+              {/* <p
+                onClick={() => orderSizeHandler(props._id, "S")}
+                className={`w-[25px] h-[25px] text-centerrounded-[50%] cursor-pointer`}
+              >
+                S
+              </p>
+              <p
+                onClick={() => orderSizeHandler(props._id, "M")}
+                className={`w-[25px] h-[25px] text-centerrounded-[50%] cursor-pointer`}
+              >
+                M
+              </p>
+              <p
+                onClick={() => orderSizeHandler(props._id, "L")}
+                className={`w-[25px] h-[25px] text-centerrounded-[50%] cursor-pointer`}
+              >
+                L
+              </p>
+              <p
+                onClick={() => orderSizeHandler(props._id, "XL")}
+                className={`w-[25px] h-[25px] text-centerrounded-[50%] cursor-pointer`}
+              >
+                XL
+              </p> */}
+            </>
+          )}
         </div>
         <div className="flex gap-4 items-center">
           <button onClick={() => dispatch(quantityDecrement(props._id))}>

@@ -22,7 +22,7 @@ export default function Profile() {
         <div className="md:py-10 stickyConatiner">
           <ul className="md:flex-col flex gap-5">
             {profileMenu.map(({ menuName, icon, index, path }) => (
-              <Link to={`/profile/${path}`}>
+              <Link to={`/profile/${path}`} key={index}>
                 <li
                   className="md:text-xl cursor-pointer flex gap-3 items-center text-base "
                   key={index}

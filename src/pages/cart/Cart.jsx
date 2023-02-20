@@ -8,8 +8,9 @@ import Subtotal from "./Subtotal";
 
 export default function Cart() {
   const products = useSelector((state) => state.cart.products);
-  const [first, setfirst] = useState()
+  const [isSize, setisSize] = useState("");
 
+  // const products = useSelector((state) => state.user.user?.cart);
   return (
     <div className={`${styles.innerpagepaddings}`}>
       <Header text={"Shopping Cart"} isMainHeading={false} postion={"37"} />
@@ -21,7 +22,7 @@ export default function Cart() {
         >
           {products.length > 0 ? (
             products.map((product) => (
-              <DisplayVerticalProduct isRemove={true} {...product} />
+              <DisplayVerticalProduct isRemove={true} {...product} isSize={isSize} setisSize={setisSize}/>
             ))
           ) : (
             <div className="flex justify-center items-center mt-10 flex-col gap-3">
@@ -34,7 +35,7 @@ export default function Cart() {
         </div>
         {products.length > 0 ? (
           <div>
-            <Subtotal />
+            <Subtotal isSize={isSize}/>
           </div>
         ) : null}
       </div>

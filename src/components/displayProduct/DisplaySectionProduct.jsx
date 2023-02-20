@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../redux/features/productSilce/productSlice";
 
 export default function DisplaySectionProduct({ limit, orderType }) {
- 
   const products = useSelector((state) => state.product.products);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,14 +15,6 @@ export default function DisplaySectionProduct({ limit, orderType }) {
       {products?.slice(0, limit)?.map((item) => (
         <ProductCard {...item} type="display" />
       ))}
-      {/* {Math.max(
-        productItems
-          .slice(0, limit)
-          .map((item) => <ProductCard {...item} type="display" />)
-      )} */}
-      {/* {productItems.slice(0, limit).map((item) => (
-        <ProductCard {...item} type="display" />
-      ))} */}
     </div>
   );
 }

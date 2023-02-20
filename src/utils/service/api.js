@@ -14,5 +14,9 @@ export const apiProduct = {
   getproductbyid: `product/find/`,
   createorder:`payment/createorder`,
   getrazorpay:`payment/`,
-  placeorder:`payment/placeorder`
+  placeorder:`payment/placeorder`,
+  saveaddress:`address/saveaddress`,
+  getaddress:`address/${userinfo?.details?._id}`,
+  getaddressbyid:`address/getaddressbyid/`
 };
+

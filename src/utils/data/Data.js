@@ -90,6 +90,25 @@ export const filterDiscount = [
     value: "70",
   },
 ];
+
+export const productSize = [
+  {
+    label: "Small",
+    value: "S",
+  },
+  {
+    label: "Medium",
+    value: "M",
+  },
+  {
+    label: "Large",
+    value: "L",
+  },
+  {
+    label: "XtraLarge",
+    value: "XL",
+  },
+];
 export const productItems = [
   {
     _id: 1,
@@ -103,11 +122,11 @@ export const productItems = [
     orginalprice: "4025",
     dec: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     color: "white",
-    saleCount:"10",
-    rating:2,
-    sellername:"Akhil",
-    sizes:["S","M","Xl"],
-    quantity:1
+    saleCount: "10",
+    rating: 2,
+    sellername: "Akhil",
+    sizes: ["S", "M", "Xl"],
+    quantity: 1,
   },
   {
     _id: 2,
@@ -121,11 +140,11 @@ export const productItems = [
     orginalprice: "1025",
     dec: "",
     color: "white",
-    saleCount:"10",
-    rating:3,
-    sellername:"Akhil",
-    sizes:["S","M","Xl"],
-    quantity:1
+    saleCount: "10",
+    rating: 3,
+    sellername: "Akhil",
+    sizes: ["S", "M", "Xl"],
+    quantity: 1,
   },
   {
     _id: 3,
@@ -139,12 +158,11 @@ export const productItems = [
     orginalprice: "5085",
     dec: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     color: "brown",
-    saleCount:"5",
-    rating:2,
-    sellername:"Akhil",
-    sizes:["S","M","Xl"],
-    quantity:1
-    
+    saleCount: "5",
+    rating: 2,
+    sellername: "Akhil",
+    sizes: ["S", "M", "Xl"],
+    quantity: 1,
   },
   {
     _id: 4,
@@ -158,11 +176,11 @@ export const productItems = [
     orginalprice: "5085",
     dec: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     color: "white",
-    saleCount:"2",
-    rating:1,
-    sellername:"Akhil",
-    sizes:["S","M","Xl"],
-    quantity:1
+    saleCount: "2",
+    rating: 1,
+    sellername: "Akhil",
+    sizes: ["S", "M", "Xl"],
+    quantity: 1,
   },
   {
     _id: 5,
@@ -194,11 +212,11 @@ export const productItems = [
     orginalprice: "5085",
     dec: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     color: "brown",
-    saleCount:"1",
-    rating:4,
-    sellername:"Akhil",
-    sizes:["S","M","Xl"],
-    quantity:1
+    saleCount: "1",
+    rating: 4,
+    sellername: "Akhil",
+    sizes: ["S", "M", "Xl"],
+    quantity: 1,
   },
   {
     _id: 6,
@@ -212,10 +230,10 @@ export const productItems = [
     orginalprice: "4025",
     dec: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     color: "white",
-    saleCount:"15",
-    rating:2,
-    sellername:"Akhil",
-    sizes:["S","M","Xl"],
-    quantity:1
+    saleCount: "15",
+    rating: 2,
+    sellername: "Akhil",
+    sizes: ["S", "M", "Xl"],
+    quantity: 1,
   },
 ];

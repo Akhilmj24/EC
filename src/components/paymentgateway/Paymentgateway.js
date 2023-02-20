@@ -1,7 +1,7 @@
 import axios from "axios";
 import { apiProduct, baseUrl } from "../../utils/service/api";
 
-export const orderPayment = (totalAmount, products, user) => {
+export const orderPayment = (totalAmount, products, user,orderaddress) => {
   const script = document.createElement("script");
   script.src = "https://checkout.razorpay.com/v1/checkout.js";
 
@@ -30,7 +30,7 @@ export const orderPayment = (totalAmount, products, user) => {
             .post(`${baseUrl}${apiProduct.placeorder}`, {
               userId: user?._id,
               phone: user?.mobile,
-              address: user?.address,
+              address: orderaddress,
               orderstatus: "Order Placed",
               products: products,
               amount: totalAmount,

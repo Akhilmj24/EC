@@ -6,7 +6,7 @@ import { formatCurrency } from "../../utils/service/formatCurrency";
 export default function ProductCard(props) {
   return (
     <>
-      <Link to={`/productview/${props._id}`}>
+      <Link to={`/productview/${props._id}`} key={props._id}>
         <div
           className={`${
             props.type === "display" ? `text-center` : `text-start`

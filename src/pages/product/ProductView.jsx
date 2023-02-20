@@ -22,14 +22,7 @@ export default function ProductView() {
   useEffect(() => {
     dispatch(getProductbyid(id));
   }, []);
-  const addToCart = (product) => {
-    const productItem = product;
-    const akhil = "5"
-    productItem.title = akhil;
-    // dispatch(addtoCart(product));
-    console.log(productItem);
-    console.log("add");
-  };
+  
   useEffect(() => {
     if (product._id) {
       setImageData([

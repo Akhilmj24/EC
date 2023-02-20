@@ -27,18 +27,7 @@ export default function Home() {
         <button onClick={() => navigate("/productlist")}>Load More</button>
       </div>
 
-      {/* Home
-      {user.loading && <div>Loagfgding</div>}
-      {!user.loading && user.error ? <div>{user.error}</div> : null}
-      {!user.loading && user.user.length ? (
-        <div>
-          {user.user?.map((user) => (
-            <div>
-              <h1>{user.title}</h1>
-            </div>
-          ))}
-        </div>
-      ) : null} */}
+     
     </div>
   );
 }
